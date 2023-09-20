@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-
+import HomePage from './pages/HomePage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,6 +35,15 @@ function App() {
             />
           }
         />
+        <Route
+        path="/"
+        element={
+          <HomePage
+            isLoggedIn={isLoggedIn}
+            accessToken={accessToken}
+          />
+        }
+      />
         
       </Routes>
     </Router>
