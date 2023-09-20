@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [accessToken, setAccessToken] = useState();
+
+  useEffect(() => console.log(isLoggedIn, accessToken), [accessToken]);
+  useEffect(() => {
+    const loggedToken = localStorage.getItem("accessToken");
+    console.log(loggedToken);
+    if (loggedToken) {
+      setAccessToken(loggedToken);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, [accessToken]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+              setAccessToken={setAccessToken}
+            />
+          }
+        />
+        
+      </Routes>
+    </Router>
   );
 }
 
