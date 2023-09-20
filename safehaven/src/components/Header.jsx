@@ -10,7 +10,7 @@ const menuItemsAdmin = [
   },
   {
     name: "Manage Shelters",
-    path: "../manage",
+    path: "../shelters",
   },
   {
     name: "Volunteers",

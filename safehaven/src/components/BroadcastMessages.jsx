@@ -57,8 +57,9 @@ function BroadcastMessages(props) {
     )
     .then((response) => {
       console.log(response);
-      fetchData();
       setMessage('');
+      fetchData();
+      
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -89,7 +90,7 @@ function BroadcastMessages(props) {
       
     
       <form className='Message-Form'>
-        <textarea className='Broadcast-TextArea' placeholder='Write a Message' onChange={e => setMessage(e.target.value)}></textarea>
+        <textarea className='Broadcast-TextArea' placeholder='Write a Message' value={message} onChange={e => setMessage(e.target.value)}></textarea>
         <hr style={{border:'1px solid #d3d2d2'}}></hr>
         <div className="Send-Message-toolbar">
           <select className="message-type-dropdown" value={messageType} onChange={handleMessageTypeChange}>
