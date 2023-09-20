@@ -1,87 +1,122 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 85vh;
-    width: 100%; 
-  }
-  .broadcast-messages {  
-  margin: 10px ;
-  width: 95%;  
-  max-height: 400px;
-  overflow-y: auto;
-  }
-  
-  
-  .Send-Message-toolbar {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-    justify-content: flex-end;
-  }
-  .Broadcast-TextArea{
-    width:90%;
-    min-height: 100px ;
-    text-align: start;
-    margin: 10px;
-    outline: none;
-    resize: none;
-    border: #fff;
-  }
-  .Message-Form{
-    border-radius: 5px;
-    border:2px solid #d3d2d2;
-    margin: 20px;
-    width: 90%;
-  }
-  
-  .send-button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #000000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .message-type-dropdown {
-    padding: 8px;
-    border: 1px solid #070707;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #f7f7f7;
-    margin: 10px;
-    width: 89%;
-  }
-  
-  .message-name {
-    font-weight: bold;
-  }
-  
-  .message-text {
-    margin-top: 10px;
-  }
-  
-  .read-more-button {
-    color: black;
-    cursor: pointer;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration-line: underline;
-    padding-left:5px ;
-    padding-right: 5px;
-    border-radius: 10px;
-   
-  }
-  
-  .read-more-button:hover {
-    background-color: #dcdbdb;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 85vh;
+  width: 100%; 
+}
+
+
+.broadcast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 35vw;
+}
+
+.broadcast-header {
+  margin: 25px;
+  font-weight: bold;
+}
+
+.switch-container {
+  display:flex;
+  align-items: center;
+  margin: 10px;
+  background-color:'white';
+  border-radius: 5px;
+  width: 95%;
+}
+.switch-containerred {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  background-color:#fad0cc;
+  border-radius: 5px;
+  width: 95%;
+}
+
+.toast-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.broadcast-messages {  
+margin: 10px ;
+width: 100%;  
+max-height: 350px;
+overflow-y: auto;
+}
+
+
+.Send-Message-toolbar {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  justify-content: flex-end;
+}
+.Broadcast-TextArea{
+  width:95%;
+  min-height: 100px ;
+  text-align: start;
+  margin: 10px;
+  outline: none;
+  resize: none;
+}
+.Message-Form{
+  border-radius: 5px;
+  border:2px solid #d3d2d2;
+  margin: 20px;
+  width: 30vw;
+}
+
+.send-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.message-type-dropdown {
+  padding: 8px;
+  border: 1px solid #070707;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  margin: 10px;
+  width: 95%;
+}
+
+.message-name {
+  font-weight: bold;
+}
+
+.message-text {
+  margin-top: 10px;
+}
+
+.read-more-button {
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration-line: underline;
+  padding-left:5px ;
+  padding-right: 5px;
+  border-radius: 10px;
+ 
+}
+
+.read-more-button:hover {
+  background-color: #dcdbdb;
+}

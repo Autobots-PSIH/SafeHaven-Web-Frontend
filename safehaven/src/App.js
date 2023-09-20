@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from './pages/HomePage';
 import Shelter from "./pages/Shelter";
+import Donation from "./pages/Donation";
 import RegisterShelter from "./pages/RegisterShelter";
+import Volunteers from "./pages/Volunteers";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState();
@@ -60,6 +63,13 @@ function App() {
             />
           }
         />
+        <Route
+          path="/volunteers"
+          element={
+            <Volunteers isLoggedIn={isLoggedIn} accessToken={accessToken} />
+          }
+        />
+        <Route path="/donate" element={<Donation isLoggedIn={isLoggedIn} />} />
         
       </Routes>
     </Router>

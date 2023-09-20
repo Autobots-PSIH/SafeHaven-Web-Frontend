@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./Flexible_Column.css";
+import "../Stylesheets/HomePage.css";
 import { Header } from "../components/Header";
 import axios from "axios";
 import VolunteerTable from "../components/VolunteerTable";
-import { RequestsCard } from "../components/RequestsCard";
+import { RequestsCard } from "../components/RequestCard";
 import { VerifyCard } from "../components/VerifyCard";
 
 export default function Volunteers(props) {
