@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
 import ShelterForm from "../components/ShelterForm";
 import { Header } from "../components/Header";
+import CreateShelterMap from '../components/CreateShelterMap'
 function RegisterShelter(props) {
-  const [shelterLocation, setShelterLocation] = useState({
-    lat: 19.21833,
-    lng: 72.978088,
-  });
+  const [shelterLocation, setShelterLocation] = useState();
   const isLoggedIn = props.isLoggedIn;
   const accessToken= props.accessToken;
   return (
@@ -16,6 +14,7 @@ function RegisterShelter(props) {
           <ShelterForm setShelterLocation={setShelterLocation}  accessToken={accessToken}/>
         </div>
         <div className="column-right">
+          <CreateShelterMap location={shelterLocation}/>
         </div>
       </div>
     </>

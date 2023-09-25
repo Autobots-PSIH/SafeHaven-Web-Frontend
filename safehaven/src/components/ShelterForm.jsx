@@ -79,7 +79,7 @@ function ShelterForm(props) {
    
     
     axios.post(
-      "https://disastro-temp-production.up.railway.app/api/shelter/create_shelter/",
+      "https://safehaven-backend-production.up.railway.app/api/shelter/create_shelter/",
       requestData,
       {
         headers: {

@@ -26,7 +26,7 @@ export default function LoginPage(props) {
     username !== "" && password !== ""
       ? axios
           .post(
-            "https://disastro-temp-production.up.railway.app/api/auth/login-admin/",
+            "https://safehaven-backend-production.up.railway.app/api/auth/login-admin/",
             {
               username: username,
               password: password,

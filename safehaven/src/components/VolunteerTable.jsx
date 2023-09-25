@@ -31,7 +31,7 @@ function VolunteerTable(props) {
     setIsLoading(true);
     axios
       .get(
-        "https://disastro-temp-production.up.railway.app/api/shelter/admin-requests/",
+        "https://safehaven-backend-production.up.railway.app/api/shelter/admin-requests/",
         config
       )
       .then((response) => {

@@ -20,7 +20,7 @@ export default function Volunteers(props) {
   const fetchData = () => {
     axios
       .get(
-        "https://disastro-temp-production.up.railway.app/api/shelter/unverified-shelters/",
+        "https://safehaven-backend-production.up.railway.app/api/shelter/unverified-shelters/",
         config
       )
       .then((response) => {
@@ -35,7 +35,7 @@ export default function Volunteers(props) {
   const fetchRequests = () => {
     axios
       .get(
-        "https://disastro-temp-production.up.railway.app/api/shelter/admin-requests/",
+        "https://safehaven-backend-production.up.railway.app/api/shelter/admin-requests/",
         config
       )
       .then((response) => {

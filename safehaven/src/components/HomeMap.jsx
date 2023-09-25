@@ -11,7 +11,7 @@ const HomeMap = ({ locations }) => {
   useEffect(() => {
     axios
       .get(
-        "https://disastro-temp-production.up.railway.app/api/shelter/get-all-shelters-noauth/"
+        "https://safehaven-backend-production.up.railway.app/api/shelter/get-all-shelters-noauth/"
       )
       .then((response) => {
         setAllLocations(response.data.data);

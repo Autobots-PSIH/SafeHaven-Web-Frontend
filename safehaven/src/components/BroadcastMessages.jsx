@@ -4,13 +4,14 @@ import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import Switch from '@mui/material/Switch';
 import { ToastContainer, toast } from 'react-toastify';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function BroadcastMessages(props) {
   const [expanded, setExpanded] = useState([]);
   const [messageType, setMessageType] = useState('Broadcast'); 
   const [message, setMessage] = useState('');
   const [messagesData, setMessagesData] = useState([]); // Initialize messagesData as an empty array
-
+  const [mesfetch, setMesfetch]=useState(false);
   const toggleExpansion = (index) => {
     const newExpanded = [...expanded];
     newExpanded[index] = !newExpanded[index];
@@ -28,10 +29,11 @@ function BroadcastMessages(props) {
 
   const fetchData = async () => {
     axios.get(
-       "https://disastro-temp-production.up.railway.app/api/shelter/get-broadcasts/",
+       "https://safehaven-backend-production.up.railway.app/api/shelter/get-broadcasts/",
        config
-     ).then((response)=>{setMessagesData(response.data.data); console.log(response.data)}).catch((err)=>{
+     ).then((response)=>{setMessagesData(response.data.data); console.log(response.data); setMesfetch(true)}).catch((err)=>{
        console.log(err.message)
+       setMesfetch(true);
      })
  };
   useEffect(() => {
@@ -48,7 +50,7 @@ function BroadcastMessages(props) {
     };
   
     axios.post(
-      "https://disastro-temp-production.up.railway.app/api/shelter/broadcast/",
+      "https://safehaven-backend-production.up.railway.app/api/shelter/broadcast/",
       requestData,
       {
         headers: {
@@ -59,10 +61,18 @@ function BroadcastMessages(props) {
     .then((response) => {
       console.log(response);
       fetchData();
+      toast.success("Broadcast Sent!!", {
+        position: 'bottom-left',
+        autoClose: 3000, // Close the toast after 3 seconds
+      });
       
     })
     .catch((error) => {
       console.error("Error:", error);
+      toast.error("Broadcast not Sent!!", {
+        position: 'bottom-left',
+        autoClose: 3000, // Close the toast after 3 seconds
+      });
     });
   };
   
@@ -72,7 +82,7 @@ function BroadcastMessages(props) {
   useEffect(() => {
     // Fetch the admin status when the component mounts
     axios
-      .get("https://disastro-temp-production.up.railway.app/api/shelter/get-admin/", {
+      .get("https://safehaven-backend-production.up.railway.app/api/shelter/get-admin/", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -81,11 +91,13 @@ function BroadcastMessages(props) {
         console.log(response)
         if (response.status === 200 && response.data.status === true) {
           setIsAdmin(true);
+          
         }
       })
       .catch((error) => {
         // Handle any errors here
         console.error("Error fetching admin status:", error);
+        
       });
   }, []);
   
@@ -95,7 +107,7 @@ function BroadcastMessages(props) {
     setIsAdmin(newAdminStatus); 
     axios
       .put(
-        "https://disastro-temp-production.up.railway.app/api/shelter/admin-update/",
+        "https://safehaven-backend-production.up.railway.app/api/shelter/admin-update/",
         {
           disaster_status: newAdminStatus,
         },
@@ -155,7 +167,7 @@ function BroadcastMessages(props) {
               checked={isAdmin}
             />
             </div>)}
-      {messagesData.length===0?(<><div  style={{margin:'25px'}}>Loading...</div></>):(<><div className="broadcast-messages">      
+      {messagesData.length===0 ?(<><div  style={{margin:'25px'}}>{mesfetch===true?(<p>No Broadcast Messages</p>):(<p>Loading...</p>)} </div></>):(<><div className="broadcast-messages">      
         {messagesData.map((item, index) => (
           <div key={index} className={`card ${expanded[index] ? 'expanded' : ''}`}>
             <p className={`message-text ${expanded[index] ? 'expanded' : ''}`}>

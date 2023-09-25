@@ -32,7 +32,7 @@ export function VerifyCard(props) {
   const onVerify = () => {
     const id = { temp_shelter_id: volunteers.id };
     axios.put(
-      "https://disastro-temp-production.up.railway.app/api/shelter/verify-temp-shelt/",
+      "https://safehaven-backend-production.up.railway.app/api/shelter/verify-temp-shelt/",
       id,
       config
     );

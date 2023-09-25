@@ -13,7 +13,7 @@ export function RequestsCard(props) {
     const body = { request_id: props.request.id, status: req_status };
 
     axios.post(
-      "https://disastro-temp-production.up.railway.app/api/shelter/update-request-status/",
+      "https://safehaven-backend-production.up.railway.app/api/shelter/update-request-status/",
       body,
       config
     );

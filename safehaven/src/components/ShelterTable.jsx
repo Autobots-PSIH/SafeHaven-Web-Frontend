@@ -38,7 +38,7 @@ function ShelterTable(props) {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "https://disastro-temp-production.up.railway.app/api/shelter/get_shelter/",
+        "https://safehaven-backend-production.up.railway.app/api/shelter/get_shelter/",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
