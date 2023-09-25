@@ -33,7 +33,7 @@ export function Header({ isLoggedIn }) {
   const navigate = useNavigate();
   const menu_display = isLoggedIn ? menuItemsAdmin : menuItems;
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-white" style={{height:'7vh'}}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>

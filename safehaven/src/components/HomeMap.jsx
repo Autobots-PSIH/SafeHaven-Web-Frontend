@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import axios from "axios";
+import map from '../images/map-location.svg'
 
 const HomeMap = ({ locations }) => {
   const [allLocations, setAllLocations] = useState({
@@ -36,6 +37,7 @@ const HomeMap = ({ locations }) => {
 
   return (
     <div style={{}}>
+      {/* <h1 style={{ margin:'2px', display:'inline-flex'}}><img src={map} style={{height:'16px', margin: '2px'}}></img><b>Shelter Map</b></h1> */}
       <GoogleMap
         mapContainerStyle={{
           height: "90vh",

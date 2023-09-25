@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Stylesheets/News.css';
-
+import newspaper from '../images/newspaper-solid.svg'
 const News = () => {
   const [news, setNews] = useState([]);
 
@@ -34,7 +34,10 @@ const News = () => {
   }, []);
 
   return (
-    <div className="news-container">
+    <>
+    
+    <div className="news-container" >
+    <h1 style={{ display:'inline-flex',width:'100%', background:'white'}}><img src={newspaper} style={{height:'16px', margin: '2px'}}></img><b>Disaster News</b></h1>
       <div className="news-cards">
         {news.map((article, index) => (
           <div
@@ -62,6 +65,7 @@ const News = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

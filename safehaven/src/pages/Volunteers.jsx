@@ -6,18 +6,23 @@ import VolunteerTable from "../components/VolunteerTable";
 import { RequestsCard } from "../components/RequestCard";
 import { VerifyCard } from "../components/VerifyCard";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 export default function Volunteers(props) {
   const accessToken = props.accessToken;
   const [tp, settp] = useState("");
   const [unverifiedVolunteer, setUnverifiedVolunteer] = useState([]);
   const [volunteer, setVolunteer] = useState([]);
   const [isReq, setIsReq] = useState(false);
+  const [fetreq, setFetreq]=useState(false);
 
   const config = {
     headers: { Authorization: `Bearer ${accessToken}` },
   };
 
   const fetchData = () => {
+    setFetreq(true);
     axios
       .get(
         "https://safehaven-backend-production.up.railway.app/api/shelter/unverified-shelters/",
@@ -25,6 +30,7 @@ export default function Volunteers(props) {
       )
       .then((response) => {
         setUnverifiedVolunteer(response.data);
+        setFetreq(false);
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +81,8 @@ export default function Volunteers(props) {
           <div className="top">
             {unverifiedVolunteer.length === 0 ? (
               <div className="mt-6 text-center text-gray-700">
-                Loading verification requests..
+                {fetreq?(<FontAwesomeIcon style={{alignSelf:'center', height:'40px', margin:'10%'}} icon={faSpinner} spin  />):(<>No Requests to Verify</>)}
+                
               </div>
             ) : (
               <>
@@ -91,23 +98,27 @@ export default function Volunteers(props) {
               <>
                 {volunteer.map(
                   (element, index) =>
-                    element.requests.length > 0 && (
-                      <div key={index}>
-                        {element.requests.map((req, reqIndex) => (
+                  <div key={index}>
+                   { element.requests.length > 0 ?(                      
+                        element.requests.map((req, reqIndex) => (
                           <RequestsCard
                             key={reqIndex}
                             requestData={element}
                             request={req}
                             accessToken={accessToken}
                           />
-                        ))}
-                      </div>
-                    )
+                        ))
+                     
+                    ):(  
+                    <div className="mt-6 text-center text-gray-700">
+                      <p> No Requests to Manage </p>
+                  </div>)}
+                  </div>
                 )}
               </>
             ) : (
               <div className="mt-6 text-center text-gray-700">
-                Loading resource requests...
+                <FontAwesomeIcon style={{alignSelf:'center', height:'40px', margin:'10%'}} icon={faSpinner} spin  />
               </div>
             )}
           </div>

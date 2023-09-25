@@ -5,6 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Switch from '@mui/material/Switch';
 import { ToastContainer, toast } from 'react-toastify';
 import { faL } from '@fortawesome/free-solid-svg-icons';
+import broadcast from '../images/Broadcast.svg'
+import alertmessage from '../images/alert.svg'
+import { Info, X } from 'lucide-react'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function BroadcastMessages(props) {
   const [expanded, setExpanded] = useState([]);
@@ -12,6 +18,7 @@ function BroadcastMessages(props) {
   const [message, setMessage] = useState('');
   const [messagesData, setMessagesData] = useState([]); // Initialize messagesData as an empty array
   const [mesfetch, setMesfetch]=useState(false);
+  const [sendload,setSendLoad]= useState(false);
   const toggleExpansion = (index) => {
     const newExpanded = [...expanded];
     newExpanded[index] = !newExpanded[index];
@@ -43,8 +50,9 @@ function BroadcastMessages(props) {
   }, []);
 
   const handleSendClick = async (e) => {
+    setSendLoad(true);
     e.preventDefault(); 
-    setMessage('');
+    
     const requestData = {
       message: message,
     };
@@ -60,15 +68,14 @@ function BroadcastMessages(props) {
     )
     .then((response) => {
       console.log(response);
+      setMessage('');
       fetchData();
-      toast.success("Broadcast Sent!!", {
-        position: 'bottom-left',
-        autoClose: 3000, // Close the toast after 3 seconds
-      });
+      setSendLoad(false);
       
     })
     .catch((error) => {
       console.error("Error:", error);
+      setSendLoad(false);
       toast.error("Broadcast not Sent!!", {
         position: 'bottom-left',
         autoClose: 3000, // Close the toast after 3 seconds
@@ -143,12 +150,15 @@ function BroadcastMessages(props) {
   return (
     <div className='container'>
    <div className="broadcast-container">
-        <div className="broadcast-header">
+        <div className="broadcast-header" style={{display:'inline-flex', marginTop:'1vh'}}>
+        <img src={broadcast} style={{height:'16px',margin:'2px', marginRight: '4px'}}></img>
           <h2 style={{ fontWeight: 'bold' }}>Broadcast Messages</h2>
         </div>
         <div className="broadcast-content">
         {!isAdmin?
-          (<div className="switch-container" >
+          (<>
+          <div className="switch-container" style={{display:'inline-flex'}} >
+            <img  style={{height:'20px', margin:'5px'}} src={alertmessage} alt='https://fontawesome.com/icons/light-emergency-on?f=classic&s=regular'></img>
             <p style={{padding:'10px'}}>Disaster Alert</p>
             <Switch
               {...label}
@@ -157,7 +167,20 @@ function BroadcastMessages(props) {
               title="Enable Disaster?"
               checked={isAdmin}
             />
-            </div>):(<div className="switch-containerred" >
+            </div>
+            <div className="rounded-md border-l-4 border-black bg-gray-100 p-4" style={{width:'95%',margin:'10px'}}>
+            <div className="flex items-center justify-between space-x-4">
+              <div>
+                <Info className="h-6 w-6" style={{color:'GrayText'}} />
+              </div>
+              <div>
+                <p className="text-sm font-medium" style={{color:'GrayText'}}>
+                An alert broadcast will be sent to all users in your region upon activation of this toggle
+                </p>
+              </div>
+            </div>
+          </div></>):(<><div className="switch-containerred" style={{display:'inline-flex'}} >
+            <img  style={{height:'20px', margin:'5px'}} src={alertmessage} ></img>
             <p style={{padding:'10px'}}>Disaster Alert</p>
             <Switch
               {...label}
@@ -166,8 +189,21 @@ function BroadcastMessages(props) {
               title="Disable Disaster?"
               checked={isAdmin}
             />
-            </div>)}
-      {messagesData.length===0 ?(<><div  style={{margin:'25px'}}>{mesfetch===true?(<p>No Broadcast Messages</p>):(<p>Loading...</p>)} </div></>):(<><div className="broadcast-messages">      
+            </div>
+            <div className="rounded-md border-l-4 border-black bg-gray-100 p-4" style={{width:'95%',margin:'10px'}}>
+            <div className="flex items-center justify-between space-x-4">
+              <div>
+                <Info className="h-6 w-6" style={{color:'GrayText'}} />
+              </div>
+              <div>
+                <p className="text-sm font-medium" style={{color:'GrayText'}}>
+                An alert broadcast will be sent to all users in your region upon activation of this toggle
+                </p>
+              </div>
+            </div>
+          </div>
+            </>)}
+      {messagesData.length===0 ?(<><div  style={{margin:'25px'}}>{mesfetch===true?(<p>No Broadcast Messages</p>):(<FontAwesomeIcon style={{alignSelf:'center', height:'40px', marginLeft:'30%'}} icon={faSpinner} spin  />)} </div></>):(<><div className="broadcast-messages">      
         {messagesData.map((item, index) => (
           <div key={index} className={`card ${expanded[index] ? 'expanded' : ''}`}>
             <p className={`message-text ${expanded[index] ? 'expanded' : ''}`}>
@@ -186,8 +222,9 @@ function BroadcastMessages(props) {
         ))}
       </div></>)}
       
-    
+              
       <form className='Message-Form'>
+        {sendload?(<div style={{height:'100px', width:'95%'}}><FontAwesomeIcon style={{height:'40px', margin:'25%'}} icon={faSpinner} spin  /></div>):(<>    
         <textarea className='Broadcast-TextArea' placeholder='Write a Message' onChange={e => setMessage(e.target.value) } value={message}></textarea>
         <hr style={{border:'1px solid #d3d2d2'}}></hr>
         <div className="Send-Message-toolbar">
@@ -199,6 +236,8 @@ function BroadcastMessages(props) {
             Send
           </button>
         </div>
+        </>  
+        )}
       </form>
       </div>
       </div>

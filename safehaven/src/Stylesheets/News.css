@@ -1,8 +1,9 @@
 .news-container {
-    height: 88vh;
+    height: 90.5vh;
     max-height: 100vh;
     overflow-y: auto;
     background-color: #e8e5e5;
+    padding: 0%;
   }
   
   .news-cards {

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ArrowLeft, ArrowRight } from "lucide-react"; 
 import { useNavigate } from "react-router-dom";
+import shelterimg from '../images/shelter.svg';
+import homeimg from '../images/home-add.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 function getColorClass(status) {
   switch (status) {
     case true:
@@ -15,7 +19,7 @@ function ShelterTable(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [shelter, setShelter] = useState([]);
   //const axcs = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1MjI1Y2U3LTRiZjEtNGZiNy04MzViLTA4ZjQwNjkyZWExNSIsImV4cCI6MTY5NTIwMjU0Mn0.A-C20SJA2kLBLAsuDlc_Mkwm6uAWNtrmt2e1-gQcY60"; // Replace with your API key
-  const itemsPerPage = 5;
+  const itemsPerPage = 7;
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const accessToken = props.accessToken
@@ -78,7 +82,7 @@ function ShelterTable(props) {
     <>
       <section className="mx-auto w-full max-w-7xl px-4 py-4">
         {isLoading ? (
-          <div className="text-center py-4">Loading...</div>
+          <div className="text-center py-4" style={{height:'93vh'}}><FontAwesomeIcon style={{height:'40px',margin:'25vh'}} icon={faSpinner} spin  /> </div>
         ) : (
           <>
             {shelter.length === 0 ? (
@@ -89,7 +93,8 @@ function ShelterTable(props) {
               <>
                 <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
                   <div>
-                    <h2 className="text-lg font-semibold text-black">Shelters</h2>
+
+                    <h2 className="text-lg font-semibold text-black" style={{display:'inline-flex'}}><img style={{height:'16px', margin:'5px'}} src={shelterimg}></img>Shelters</h2>
                     <p className="mt-1 text-sm text-gray-700">
                       This is a list of all the existing shelters.
                     </p>
@@ -102,12 +107,13 @@ function ShelterTable(props) {
                     navigate("/register-shelter");
                   }}
                 >
+                  <img src={homeimg} style={{height:'24px', marginRight:'5px', display:'inline-flex'}}></img>
                   Add new shelter
                 </button>
               </div>
                 </div>
 
-                <div className="mt-6 flex flex-col">
+                <div className="mt-6 flex flex-col" style={{marginTop:'40px', marginBottom:'40px'}}>
                   <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                       <div className="overflow-hidden border border-gray-200 md:rounded-lg">

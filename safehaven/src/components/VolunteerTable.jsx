@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import verifiedImg from '../images/verified-check.svg'
+
 function getColorClass(status) {
   switch (status) {
     case "Accepted":
@@ -70,7 +74,7 @@ function VolunteerTable(props) {
     <>
       <section className="mx-auto w-full max-w-7xl px-4 py-4">
         {isLoading ? (
-          <div className="text-center py-4">Loading...</div>
+          <FontAwesomeIcon style={{alignSelf:'center', height:'40px', marginLeft:'45%', marginTop:'25%'}} icon={faSpinner} spin  />
         ) : (
           <>
             {volunteer.length === 0 ? (
@@ -82,6 +86,7 @@ function VolunteerTable(props) {
                 <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
                   <div>
                     <h2 className="text-lg font-semibold text-black">
+                      <img style={{display:'inline-flex', height:'20px'}}  src={verifiedImg}></img>
                       Verified Volunteers
                     </h2>
                     <p className="mt-1 text-sm text-gray-700">

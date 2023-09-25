@@ -12,6 +12,7 @@ function Donation({isLoggedIn}) {
     justifyContent: 'center',
     position: 'relative',
     flexDirection: 'column',
+    
   };
 
   const imageStyle = {
@@ -81,6 +82,7 @@ function Donation({isLoggedIn}) {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
+      <div style={{height:'93vh'}}>
       <div style={containerStyle}>
         <img src={disaster} alt="Disaster" style={imageStyle} />
         <div style={textOverlayStyle}>YOUR HELP MATTERS</div>
@@ -135,6 +137,7 @@ function Donation({isLoggedIn}) {
             <button style={buttonStyle}>{buttonText}</button>
           </div>
         </div>
+      </div>
       </div>
     </>
   );
