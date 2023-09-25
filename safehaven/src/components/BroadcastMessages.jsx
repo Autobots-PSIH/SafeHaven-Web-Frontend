@@ -224,7 +224,7 @@ function BroadcastMessages(props) {
       
               
       <form className='Message-Form'>
-        {sendload?(<div style={{height:'100px', width:'95%'}}><FontAwesomeIcon style={{height:'40px', margin:'25%'}} icon={faSpinner} spin  /></div>):(<>    
+        {sendload?(<FontAwesomeIcon style={{height:'40px', margin:'25%'}} icon={faSpinner} spin  />):(<>    
         <textarea className='Broadcast-TextArea' placeholder='Write a Message' onChange={e => setMessage(e.target.value) } value={message}></textarea>
         <hr style={{border:'1px solid #d3d2d2'}}></hr>
         <div className="Send-Message-toolbar">
